@@ -11,6 +11,8 @@ session = scoped_session(sessionmaker(bind=ENGINE, autocommit = False, autoflush
 Base = declarative_base()
 Base.query = session.query_property()
 
+
+
 ### Class declarations go here
 class User(Base):
     __tablename__="users"
@@ -37,6 +39,11 @@ class Rating(Base):
     movie = relationship("Movie", backref=backref("ratings", order_by=id))
     user = relationship("User", backref=backref("ratings", order_by=id))
 ### End class declarations
+
+def make_new_user(email, password, age, zipcode):
+    new_user = User(email=email, password=password, age=age, zipcode=zipcode)
+    session.add(new_user)
+    session.commit()
 
 
 def main():
