@@ -1,6 +1,16 @@
 {% extends 'master.html' %}
 {% block body %}
     <h2>Movies:</h2>
+    <form class="submit_form" method="POST" action="/movie_results">
+    <ul>
+        {% for message in get_flashed_messages() %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <p>Search Movies:</p>
+    <input type="text" class="form-control" placeholder="Movie title" name= "movie_title">
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+</form>
     {% for movie in movies %}
             <a href="/movie_title/{{movie.name}}">{{ movie.name }}</a> <br>
     {% endfor %}

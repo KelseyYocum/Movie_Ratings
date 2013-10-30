@@ -1,6 +1,13 @@
 {% extends 'master.html' %}
 {% block body %}
-<h1>{{movie_name}}</h2>
+<h1>{{movie_name}}</h1>
+    <p>Average Rating: {{average}}<br>
+        Your Rating: {{rating}}<br> 
+        Predicted Rating: {{prediction}}<br>
+    </p>
+    <h3> The Eye's Judgement:</h3>
+    {{beratement}}<br><br>
+
 {% for user_rating in user_ratings %}
     User: <a href = "/profile/{{user_rating}}">{{user_rating}}</a><br>
     Rating: {{user_ratings[user_rating]}}<br>

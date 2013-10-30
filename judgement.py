@@ -81,6 +81,16 @@ def show_users(page_id=0):
     user_list = model.session.query(model.User).filter(model.User.id > page_id).limit(30).all()
     return render_template("user_list.html", users=user_list, page_id=page_id, profile_link = profile_link)
 
+@app.route("/movie_results", methods = ["POST"])
+def show_search_results():
+    movie_title = request.form.get("movie_title")
+    movie_exist = model.movie_does_not_exist(movie_title)
+    if not movie_exist:
+        return redirect(url_for("movie_profile", movie_name= movie_title))
+    else:
+        flash ("Movie does not exist")
+        return redirect(url_for("show_movies"))
+
 
 @app.route("/show_movies/")
 @app.route("/show_movies/<int:page_id>")
@@ -93,7 +103,15 @@ def show_movies(page_id=0):
 def movie_profile(movie_name):
     profile_link = my_profile_link()
     user_ratings = model.get_users_ratings(movie_name)
-    return render_template("movie_profile.html", profile_link=profile_link, user_ratings=user_ratings, movie_name=movie_name)
+    if session.get('id'):
+        id = session['id']
+    else:
+        id = None
+    avg_rating, rating, prediction, beratement = model.get_movie_prediction(id, movie_name)
+    return render_template("movie_profile.html", profile_link=profile_link, user_ratings=user_ratings, 
+                            movie_name=movie_name, average=avg_rating, rating=rating, prediction=prediction, 
+                            beratement = beratement)
+
 @app.route("/register")
 def register():
     return render_template("register.html")
@@ -116,6 +134,7 @@ def make_new_user():
     model.make_new_user(email, password, age, zipcode)
     flash("You've successfully made an account!")
     return redirect(url_for("index"))
+
 
 if __name__ == "__main__":
     app.run(debug = True)
