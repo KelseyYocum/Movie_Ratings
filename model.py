@@ -11,8 +11,6 @@ session = scoped_session(sessionmaker(bind=ENGINE, autocommit = False, autoflush
 Base = declarative_base()
 Base.query = session.query_property()
 
-
-
 ### Class declarations go here
 class User(Base):
     __tablename__="users"
@@ -45,6 +43,67 @@ def make_new_user(email, password, age, zipcode):
     session.add(new_user)
     session.commit()
 
+def getUserFromId(id):
+    user = session.query(User).get(id)
+    return user 
+
+#returning a dictionary with list of movies and their ratings for a user id
+def get_movie_list(id):
+    user = session.query(User).filter_by(id=id).first()
+    ratings = user.ratings
+    movie_ratings = {}
+    for m in ratings:
+        movie_ratings[m.movie.name] = m.rating
+    return movie_ratings
+
+
+def get_movieid_from_name(movie_name):
+    movie = session.query(Movie).filter_by(name=movie_name).first()
+    return movie.id
+
+def add_movie_rating(user_id, movie_id, rating):
+    new_rating = Rating(movie_id=movie_id, user_id=user_id, rating=rating)
+    session.add(new_rating)
+    session.commit()
+
+def user_rated_movie(movie_id, user_id):
+    user = session.query(User).filter_by(id=user_id).first()
+    ratings = user.ratings
+    for m in ratings:
+        if m.movie.id == movie_id:
+            return True
+    return False
+
+def userExists(email):
+    user = session.query(User).filter_by(email = email).first()
+    if user == None:
+        return False
+    return True
+
+def movie_does_not_exist(movie_name):
+    movie = session.query(Movie).filter_by(name=movie_name).first()
+    if movie == None:
+        return True
+    return False
+
+def authenticate(email, password):
+    user = session.query(User).filter_by(email = email, password = password).first()
+    if user == None:
+        return None
+    return user.id
+
+def change_rating(user_id, movie_id, new_rating):
+    old_rating = session.query(Rating).filter_by(user_id=user_id, movie_id=movie_id).first()
+    old_rating.rating = new_rating
+    session.commit()
+
+def get_users_ratings(movie_name):
+    movie = session.query(Movie).filter_by(name = movie_name).first()
+    ratings = movie.ratings
+    user_ratings = {}
+    for rating in ratings:
+        user_ratings[rating.user_id] = rating.rating
+    return user_ratings
 
 def main():
     """In case we need this for something"""

@@ -1,6 +1,6 @@
 {% extends 'master.html' %}
 {% block body %}
-<form class="signin" method="POST" action="/new_user">
+<form class="signin" method="POST" action="/register">
     {% for message in get_flashed_messages() %}
             <p>{{ message }}</p>
     {% endfor %}

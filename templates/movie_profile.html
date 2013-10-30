@@ -1,0 +1,8 @@
+{% extends 'master.html' %}
+{% block body %}
+<h1>{{movie_name}}</h2>
+{% for user_rating in user_ratings %}
+    User: <a href = "/profile/{{user_rating}}">{{user_rating}}</a><br>
+    Rating: {{user_ratings[user_rating]}}<br>
+{% endfor %}
+{% endblock %}

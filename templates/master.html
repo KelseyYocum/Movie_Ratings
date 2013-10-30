@@ -8,5 +8,17 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
+        <div id="toolbar">
+            {% if profile_link%}
+                <a href="/profile/{{profile_link}}">My profile |</a>
+                <a href="/clear">Sign out |</a>
+            {% else %}
+                <a href="/">Sign in |</a>
+            {% endif %}
+            <a href="/show_users">All users |</a>
+            <a href="/show_movies">All movies</a>
+
+            
+        </div>
     </body>
 </html>

@@ -1,0 +1,10 @@
+{% extends 'master.html' %}
+{% block body %}
+
+<h1>{{user_id}} {{email}}</h1>
+
+{% for movie in movie_ratings %}
+    <b>Movie:</b> <a href="/movie_title/{{movie}}">{{movie}}</a><br>
+    Rating: {{movie_ratings[movie]}}<br>
+{% endfor %}
+{% endblock %}

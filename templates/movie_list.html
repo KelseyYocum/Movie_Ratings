@@ -1,0 +1,13 @@
+{% extends 'master.html' %}
+{% block body %}
+    <h2>Movies:</h2>
+    {% for movie in movies %}
+            <a href="/movie_title/{{movie.name}}">{{ movie.name }}</a> <br>
+    {% endfor %}
+        {% if page_id > 0 %}
+            <a href="{{url_for('show_movies', page_id=(movies[0].id)-31)}}">Previous page</a>
+        {% endif %}
+        {% if movies|length == 30 %}
+            <a href="{{url_for('show_movies', page_id=movies[-1].id)}}">Next page</a>
+        {% endif %}
+{% endblock %}
