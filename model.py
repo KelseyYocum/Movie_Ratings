@@ -35,6 +35,8 @@ class User(Base):
         else:
             return 0.0
 
+
+
     def predict_rating(self, movie):
         ratings = self.ratings
         other_ratings = movie.ratings
@@ -86,6 +88,15 @@ def get_movie_list(id):
     return movie_ratings
 
 
+def user_rated_movie(movie_id, user_id):
+        user = session.query(User).filter_by(id=user_id).first()
+        ratings = user.ratings
+        for m in ratings:
+            if m.movie.id == movie_id:
+                return True
+        return False
+
+
 def get_movieid_from_name(movie_name):
     movie = session.query(Movie).filter_by(name=movie_name).first()
     return movie.id
@@ -95,13 +106,6 @@ def add_movie_rating(user_id, movie_id, rating):
     session.add(new_rating)
     session.commit()
 
-def user_rated_movie(movie_id, user_id):
-    user = session.query(User).filter_by(id=user_id).first()
-    ratings = user.ratings
-    for m in ratings:
-        if m.movie.id == movie_id:
-            return True
-    return False
 
 def userExists(email):
     user = session.query(User).filter_by(email = email).first()
@@ -169,7 +173,7 @@ def get_movie_prediction(user_id, movie_name):
 
     difference = abs(eye_rating - effective_rating)
 
-    messages = [ "I suppose you don't have such bad taste after all.",
+    messages = [ "You're alright.", "I suppose you don't have such bad taste after all.",
              "I regret every decision that I've ever made that has brought me to listen to your opinion.",
              "Words fail me, as your taste in movies has clearly failed you.",
              "That movie is great. For a clown to watch. Idiot."]
