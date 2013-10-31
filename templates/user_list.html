@@ -1,5 +1,6 @@
 {% extends 'master.html' %}
 {% block body %}
+<h1>List of all Users</h1>
     {% for user in users %}
             User <a href="/profile/{{user.id}}">{{ user.id }}</a>, age {{ user.age }} has {{ user.ratings|length }} ratings<br>
     {% endfor %}

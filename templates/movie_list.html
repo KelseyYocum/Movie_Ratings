@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% block body %}
-    <h2>Movies:</h2>
+    <h1>Movies</h1>
     <form class="submit_form" method="POST" action="/movie_results">
-    <ul>
+    <ul class = "flash_message">
         {% for message in get_flashed_messages() %}
             <li>{{ message }}</li>
         {% endfor %}

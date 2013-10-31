@@ -22,11 +22,19 @@ body {
 }
 
 
-h2 {
-    margin-bottom: 10px;
+a:hover{
+    color:#3D3D5C;
+    text-decoration: none;
 }
 
+h1 {
+    margin-bottom: 30px;
+    font-size: 33px;
+}
 
+p {
+    padding-bottom: 0px;
+}
 
 input[type=radio]{
     margin: 0px 2px 20px 2px;
@@ -37,8 +45,24 @@ input[type=radio]{
     margin:0 6px 20px 6px;
 }
 
+.listing{
+    margin-bottom: 10px;
+
+}
+
+
+.flash_message{
+    list-style-type: none;
+    color: red;
+    padding-left: 0px;
+    
+
+}
+
+
 #movie_rate_form{
     margin-bottom: 50px;
+    margin-top: 10px;
 }
 
 
@@ -52,10 +76,7 @@ input[type=radio]{
     border-style: none;
 }
 
-.movie_listing{
-    margin-bottom: 10px;
 
-}
 
 
 form.signin input.form-control {
@@ -70,7 +91,6 @@ form.signin{
 
 
 
-
 form.signin input.btn {
     margin: 50px auto;
 }
@@ -79,6 +99,11 @@ form.submit_form{
     width: 330px;
     margin: 30px auto;
 }
+
+form.submit_form input.form-control {
+    margin-bottom: 20px;
+}
+
 #posts_content {
     margin: 50px auto;
 }

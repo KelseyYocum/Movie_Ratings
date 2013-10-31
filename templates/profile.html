@@ -1,12 +1,12 @@
 {% extends 'master.html' %}
 {% block body %}
 
-<h2>{{email}}</h2>
+<h1>{{email}}</h1>
 
 <p>Rate a movie!</p>
 
 <form id="movie_rate_form" class="submit_form" method="POST" action="/profile/{{user_id}}">
-    <ul>
+    <ul class="flash_message">
         {% for message in get_flashed_messages() %}
             <li>{{ message }}</li>
         {% endfor %}
@@ -24,7 +24,7 @@
 </form>
 
 {% for movie in movie_ratings %}
-    <div class= "movie_listing">
+    <div class= "listing">
         <b>Movie:</b> <a href="/movie_title/{{movie}}">{{movie}}</a>
         <p>Rating: {{movie_ratings[movie]}}</p>
     </div>

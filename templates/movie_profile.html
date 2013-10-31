@@ -9,7 +9,9 @@
     {{beratement}}<br><br>
 
 {% for user_rating in user_ratings %}
-    User: <a href = "/profile/{{user_rating}}">{{user_rating}}</a><br>
-    Rating: {{user_ratings[user_rating]}}<br>
+    <div class="listing">
+        <b>User:</b> <a href = "/profile/{{user_rating}}">{{user_rating}}</a><br>
+        Rating: {{user_ratings[user_rating]}}
+    </div>
 {% endfor %}
 {% endblock %}
