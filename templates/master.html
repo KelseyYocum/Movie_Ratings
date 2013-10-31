@@ -5,20 +5,21 @@
         <link href="/static/css/main.css" rel="stylesheet">
     </head>
     <body>
+        <div id="sidebar">
+            <ul id = "sidebar_list">
+                {% if profile_link%}
+                <li><a href="/profile/{{profile_link}}">My profile</a></li>
+                <li><a href="/clear">Sign out</a></li>
+                {% else %}
+                <li><a href="/">Sign in</a></li>
+                {% endif %}
+                <li><a href="/show_users">All users</a></li>
+                <li><a href="/show_movies">All movies</a></li>
+            </ul>
+        </div>
         <div class="container">
             {% block body %}{% endblock %}
         </div>
-        <div id="toolbar">
-            {% if profile_link%}
-                <a href="/profile/{{profile_link}}">My profile |</a>
-                <a href="/clear">Sign out |</a>
-            {% else %}
-                <a href="/">Sign in |</a>
-            {% endif %}
-            <a href="/show_users">All users |</a>
-            <a href="/show_movies">All movies</a>
-
-            
-        </div>
+        
     </body>
 </html>

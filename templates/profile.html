@@ -1,28 +1,32 @@
 {% extends 'master.html' %}
 {% block body %}
 
-<h1>{{user_id}} {{email}}</h1>
+<h2>{{email}}</h2>
 
-<form class="submit_form" method="POST" action="/profile/{{user_id}}">
+<p>Rate a movie!</p>
+
+<form id="movie_rate_form" class="submit_form" method="POST" action="/profile/{{user_id}}">
     <ul>
         {% for message in get_flashed_messages() %}
             <li>{{ message }}</li>
         {% endfor %}
     </ul>
-    <input type="text" class="form-control" placeholder="Movie name" name= "movie_name">
+    <input type="text" id = "movie_input_box" class="form-control" placeholder="Movie name" name= "movie_name">
     <p>Rating:</p>
     
-    1<input type="radio" name="rating" value="1">
+    <span class="radio_num">1</span><input type="radio" name="rating" value="1">
     <input type="radio" name="rating" value="2">
     <input type="radio" name="rating" value="3">
     <input type="radio" name="rating" value="4">
-    <input type="radio" name="rating" value="5">5
+    <input type="radio" name="rating" value="5"><span class="radio_num">5</span><br>
    
-    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+    <input type="submit" id = "rate_submit" value="Submit">
 </form>
 
 {% for movie in movie_ratings %}
-    <b>Movie:</b> <a href="/movie_title/{{movie}}">{{movie}}</a><br>
-    Rating: {{movie_ratings[movie]}}<br>
+    <div class= "movie_listing">
+        <b>Movie:</b> <a href="/movie_title/{{movie}}">{{movie}}</a>
+        <p>Rating: {{movie_ratings[movie]}}</p>
+    </div>
 {% endfor %}
 {% endblock %}

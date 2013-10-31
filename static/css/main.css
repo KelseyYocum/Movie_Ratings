@@ -1,0 +1,84 @@
+body {
+    background-color: #eee;
+}
+
+
+#sidebar{
+    margin:30px 50px 0 10px;
+    float:left;
+}
+
+#sidebar_list{
+    list-style-type: none;
+    font-size: 20px;
+}
+
+
+
+.container{
+
+    float:left;
+    margin: 10px 0 0 0;
+}
+
+
+h2 {
+    margin-bottom: 10px;
+}
+
+
+
+input[type=radio]{
+    margin: 0px 2px 20px 2px;
+}
+
+
+.radio_num{
+    margin:0 6px 20px 6px;
+}
+
+#movie_rate_form{
+    margin-bottom: 50px;
+}
+
+
+#movie_input_box{
+    margin-bottom: 20px;
+}
+
+#rate_submit{
+    background-color: #428bca;
+    color: white;
+    border-style: none;
+}
+
+.movie_listing{
+    margin-bottom: 10px;
+
+}
+
+
+form.signin input.form-control {
+    margin-bottom: 20px;
+}
+
+form.signin{
+    width: 330px;
+    margin: 50px auto;
+}
+
+
+
+
+
+form.signin input.btn {
+    margin: 50px auto;
+}
+
+form.submit_form{
+    width: 330px;
+    margin: 30px auto;
+}
+#posts_content {
+    margin: 50px auto;
+}
